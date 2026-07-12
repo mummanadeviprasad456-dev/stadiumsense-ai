@@ -1,8 +1,8 @@
 'use client';
 import { useState } from 'react';
 import {
-  LayoutDashboard, AlertTriangle, CheckCircle, Clock, Bell, Users,
-  Megaphone, Plus, RefreshCw, Shield, ArrowRight, Activity
+  AlertTriangle, CheckCircle, Clock, Bell, Users,
+  Megaphone, Plus, Shield, ArrowRight, Activity
 } from 'lucide-react';
 import LayoutHeader from '@/components/LayoutHeader';
 import StadiumMap from '@/components/StadiumMap';

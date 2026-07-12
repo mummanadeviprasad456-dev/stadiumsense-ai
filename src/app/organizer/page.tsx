@@ -1,15 +1,14 @@
 'use client';
 import { useState, useEffect } from 'react';
 import {
-  TrendingUp, Leaf, Shield, BarChart3, Activity,
-  Zap, Users, Clock, Globe, ArrowUp
+  TrendingUp, Leaf, BarChart3, Activity,
+  Zap, Clock, Globe, ArrowUp
 } from 'lucide-react';
 import LayoutHeader from '@/components/LayoutHeader';
 import StadiumMap from '@/components/StadiumMap';
 import CrowdSimulator from '@/components/CrowdSimulator';
 import AIAssistant from '@/components/AIAssistant';
 import { useStadiumContext } from '@/context/StadiumContext';
-import { initialSustainabilityMetrics } from '@/utils/mockData';
 
 // Simple Bar Chart using pure SVG
 function SVGBarChart({ data, color }: { data: { label: string; value: number }[]; color: string }) {
@@ -71,11 +70,14 @@ export default function OrganizerPage() {
     darkMode, setDarkMode
   } = useStadiumContext();
   const [liveCount, setLiveCount] = useState(54200);
+  const [fluctuation, setFluctuation] = useState(15);
 
   // Simulate live visitor counter fluctuation
   useEffect(() => {
     const id = setInterval(() => {
-      setLiveCount((c) => c + Math.floor(Math.random() * 60 - 20));
+      const diff = Math.floor(Math.random() * 60 - 20);
+      setLiveCount((c) => c + diff);
+      setFluctuation(Math.floor(Math.random() * 30 + 10));
     }, 3000);
     return () => clearInterval(id);
   }, []);
@@ -114,7 +116,7 @@ export default function OrganizerPage() {
             <div className="text-xs mb-0.5" style={{ color: 'var(--text-muted)' }}>Live Visitor Count</div>
             <div className="text-2xl font-black gradient-text">{liveCount.toLocaleString()}</div>
             <div className="flex items-center justify-center gap-1 text-xs text-green-400 mt-0.5">
-              <ArrowUp size={10} /> +{Math.floor(Math.random() * 30 + 10)}/min
+              <ArrowUp size={10} /> +{fluctuation}/min
             </div>
           </div>
         </div>

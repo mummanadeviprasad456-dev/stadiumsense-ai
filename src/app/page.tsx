@@ -1,10 +1,9 @@
 'use client';
-import { useState } from 'react';
 import Link from 'next/link';
 import {
   Zap, Users, LayoutDashboard, HeartHandshake, Settings,
-  Shield, Globe, Leaf, ChevronRight, Star, Wifi, Map,
-  Calendar, Bell, Mic, ArrowRight, Check, TrendingUp
+  Shield, Globe, Leaf, ChevronRight, Map,
+  Mic, ArrowRight, Check, TrendingUp
 } from 'lucide-react';
 import LayoutHeader from '@/components/LayoutHeader';
 import AIAssistant from '@/components/AIAssistant';
@@ -192,7 +191,7 @@ export default function HomePage() {
           <div className="text-center mb-12">
             <h2 id="features-heading" className="section-title text-4xl mb-4 gradient-text">Platform Capabilities</h2>
             <p className="text-base max-w-xl mx-auto" style={{ color: 'var(--text-muted)' }}>
-              Enterprise-grade AI features designed for the world's largest sporting event
+              Enterprise-grade AI features designed for the world&apos;s largest sporting event
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -215,7 +214,7 @@ export default function HomePage() {
       <section className="py-20" aria-labelledby="schedule-heading">
         <div className="page-container">
           <div className="text-center mb-12">
-            <h2 id="schedule-heading" className="section-title text-4xl mb-4 gradient-text">Today's Match Day Schedule</h2>
+            <h2 id="schedule-heading" className="section-title text-4xl mb-4 gradient-text">Today&apos;s Match Day Schedule</h2>
             <p className="text-sm" style={{ color: 'var(--text-muted)' }}>USA vs Argentina · Quarter Final · MetLife Stadium</p>
           </div>
           <div className="max-w-xl mx-auto space-y-3">

@@ -1,5 +1,4 @@
 'use client';
-import { useCrowdDensity } from '@/hooks/useCrowdDensity';
 import { CrowdDensity } from '@/types';
 
 interface StadiumMapProps {

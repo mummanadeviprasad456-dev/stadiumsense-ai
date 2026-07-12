@@ -1,6 +1,17 @@
 'use client';
 import { useState, useCallback, useEffect, useRef } from 'react';
 
+interface SpeechRecognitionInstance {
+  lang: string;
+  interimResults: boolean;
+  maxAlternatives: number;
+  onresult: ((event: { results: { [key: number]: { [key: number]: { transcript: string } } } }) => void) | null;
+  onerror: (() => void) | null;
+  onend: (() => void) | null;
+  start(): void;
+  stop(): void;
+}
+
 /**
  * useAccessibility — WCAG-compliant accessibility settings hook.
  * Controls: high contrast, large text, color-blind palette, TTS, voice input.
@@ -12,7 +23,7 @@ export function useAccessibility() {
   const [screenReader, setScreenReader] = useState(false);
   const [voiceInputActive, setVoiceInputActive] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const recognitionRef = useRef<any | null>(null);
+  const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
 
   // Apply CSS classes to root element based on accessibility state
   useEffect(() => {
@@ -49,7 +60,13 @@ export function useAccessibility() {
    */
   const startVoiceInput = useCallback((onResult: (transcript: string) => void) => {
     if (typeof window === 'undefined') return;
-    const SpeechRecognitionAPI = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    const SpeechRecognitionAPI = (window as unknown as {
+      SpeechRecognition?: new () => SpeechRecognitionInstance;
+      webkitSpeechRecognition?: new () => SpeechRecognitionInstance;
+    }).SpeechRecognition || (window as unknown as {
+      SpeechRecognition?: new () => SpeechRecognitionInstance;
+      webkitSpeechRecognition?: new () => SpeechRecognitionInstance;
+    }).webkitSpeechRecognition;
     if (!SpeechRecognitionAPI) {
       alert('Voice recognition is not supported in this browser. Please use Chrome or Edge.');
       return;
@@ -58,7 +75,7 @@ export function useAccessibility() {
     rec.lang = 'en-US';
     rec.interimResults = false;
     rec.maxAlternatives = 1;
-    rec.onresult = (e: any) => {
+    rec.onresult = (e: { results: { [key: number]: { [key: number]: { transcript: string } } } }) => {
       const transcript = e.results[0][0].transcript;
       onResult(transcript);
       setVoiceInputActive(false);

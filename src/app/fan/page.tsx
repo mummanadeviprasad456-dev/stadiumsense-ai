@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import {
   Ticket, Map, Navigation, Bus, Leaf, Search, Plus, CheckCircle,
-  XCircle, Clock, Zap, Droplets, Recycle, ChevronRight, QrCode
+  XCircle, Clock, Zap, Droplets, Recycle, QrCode
 } from 'lucide-react';
 import LayoutHeader from '@/components/LayoutHeader';
 import StadiumMap from '@/components/StadiumMap';
@@ -202,7 +202,7 @@ export default function FanPage() {
                 </div>
                 <div className="glass-card p-4" style={{ borderColor: 'rgba(34,197,94,0.3)' }}>
                   <p className="text-xs" style={{ color: '#4ade80' }}>
-                    🌿 <strong>AI Eco Tip:</strong> Taking the Metro Line 6 instead of driving saves an average of 3.6 kg CO₂ per person per trip. 82% of today's fans have chosen eco-transport — join them!
+                    🌿 <strong>AI Eco Tip:</strong> Taking the Metro Line 6 instead of driving saves an average of 3.6 kg CO₂ per person per trip. 82% of today&apos;s fans have chosen eco-transport — join them!
                   </p>
                 </div>
               </div>

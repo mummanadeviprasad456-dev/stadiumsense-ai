@@ -4,6 +4,17 @@ import React, { createContext, useContext, useState, useCallback, useEffect, use
 import { CrowdDensity, Language, GateStatus } from '../types';
 import { dictionary } from '../utils/dictionary';
 
+interface SpeechRecognitionInstance {
+  lang: string;
+  interimResults: boolean;
+  maxAlternatives: number;
+  onresult: ((event: { results: { [key: number]: { [key: number]: { transcript: string } } } }) => void) | null;
+  onerror: (() => void) | null;
+  onend: (() => void) | null;
+  start(): void;
+  stop(): void;
+}
+
 interface StadiumContextType {
   // Language
   lang: Language;
@@ -57,7 +68,7 @@ export function StadiumProvider({ children }: { children: React.ReactNode }) {
   const [screenReader, setScreenReader] = useState(false);
   const [voiceInputActive, setVoiceInputActive] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const recognitionRef = useRef<any | null>(null);
+  const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
 
   // Crowd Density
   const [density, setDensity] = useState<CrowdDensity>('medium');
@@ -123,7 +134,13 @@ export function StadiumProvider({ children }: { children: React.ReactNode }) {
   // Voice Input
   const startVoiceInput = useCallback((onResult: (transcript: string) => void) => {
     if (typeof window === 'undefined') return;
-    const SpeechRecognitionAPI = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    const SpeechRecognitionAPI = (window as unknown as {
+      SpeechRecognition?: new () => SpeechRecognitionInstance;
+      webkitSpeechRecognition?: new () => SpeechRecognitionInstance;
+    }).SpeechRecognition || (window as unknown as {
+      SpeechRecognition?: new () => SpeechRecognitionInstance;
+      webkitSpeechRecognition?: new () => SpeechRecognitionInstance;
+    }).webkitSpeechRecognition;
     if (!SpeechRecognitionAPI) {
       alert('Voice recognition is not supported in this browser. Please use Chrome or Edge.');
       return;
@@ -132,7 +149,7 @@ export function StadiumProvider({ children }: { children: React.ReactNode }) {
     rec.lang = 'en-US';
     rec.interimResults = false;
     rec.maxAlternatives = 1;
-    rec.onresult = (e: any) => {
+    rec.onresult = (e: { results: { [key: number]: { [key: number]: { transcript: string } } } }) => {
       const transcript = e.results[0][0].transcript;
       onResult(transcript);
       setVoiceInputActive(false);

@@ -1,6 +1,6 @@
 'use client';
-import { useState, useRef, useEffect } from 'react';
-import { Zap, Send, Mic, MicOff, Volume2, VolumeX, X, MessageSquare, Loader2 } from 'lucide-react';
+import { useState, useRef, useEffect, useCallback } from 'react';
+import { Zap, Send, Mic, MicOff, Volume2, VolumeX, X, Loader2 } from 'lucide-react';
 import { ChatMessage, CrowdDensity, Language, UserRole } from '@/types';
 import { getAIResponse } from '@/utils/gemini';
 import { useAccessibility } from '@/hooks/useAccessibility';
@@ -45,7 +45,7 @@ interface AIAssistantProps {
 
 export default function AIAssistant({ role, density, lang, t }: AIAssistantProps) {
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState<ChatMessage[]>([
+  const [messages, setMessages] = useState<ChatMessage[]>(() => [
     {
       id: '0',
       sender: 'ai',
@@ -63,7 +63,7 @@ export default function AIAssistant({ role, density, lang, t }: AIAssistantProps
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, loading]);
 
-  const sendMessage = async (text: string) => {
+  const sendMessage = useCallback(async (text: string) => {
     if (!text.trim() || loading) return;
     const userMsg: ChatMessage = {
       id: Date.now().toString(),
@@ -84,7 +84,7 @@ export default function AIAssistant({ role, density, lang, t }: AIAssistantProps
     };
     setMessages((prev) => [...prev, aiMsg]);
     setLoading(false);
-  };
+  }, [loading, messages, density, lang]);
 
   const handleVoice = () => {
     if (voiceInputActive) return;

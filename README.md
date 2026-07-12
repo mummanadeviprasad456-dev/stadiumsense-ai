@@ -22,6 +22,7 @@ StadiumSense AI is an enterprise-grade, production-ready smart stadium operation
 - [Folder Structure](#folder-structure)
 - [Application Screenshots](#application-screenshots)
 - [Installation](#installation)
+- [Testing](#testing)
 - [Environment Variables](#environment-variables)
 - [Deployment](#deployment)
 - [Future Enhancements](#future-enhancements)
@@ -261,6 +262,47 @@ npm install
 ### 3. Run in development mode
 ```bash
 npm run dev
+```
+
+---
+
+## Testing
+
+StadiumSense AI includes a complete testing setup using [Vitest](https://vitest.dev/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro).
+
+To run all unit and integration tests:
+```bash
+npm test
+```
+
+### Sample Test Output
+```
+> promptwars@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.10 C:/Users/mumma/OneDrive/Desktop/promptwars
+
+ ✓ tests/SOSButton.test.tsx (4 tests) 1008ms
+ ✓ tests/gemini.test.ts (4 tests) 3250ms
+ ✓ tests/LandingPage.test.tsx (4 tests) 2224ms
+ ✓ tests/OrganizerDashboard.test.tsx (5 tests) 2165ms
+ ✓ tests/VolunteerPortal.test.tsx (8 tests) 2496ms
+ ✓ tests/FanPortal.test.tsx (6 tests) 2608ms
+ ✓ tests/StaffPortal.test.tsx (4 tests) 2130ms
+ ✓ tests/useAccessibility.test.ts (5 tests) 108ms
+ ✓ tests/AIAssistant.test.tsx (3 tests) 773ms
+ ✓ tests/StadiumMap.test.tsx (3 tests) 536ms
+ ✓ tests/CrowdSimulator.test.tsx (2 tests) 498ms
+ ✓ tests/useLanguage.test.ts (3 tests) 60ms
+ ✓ tests/LayoutHeader.test.tsx (3 tests) 327ms
+ ✓ tests/useCrowdDensity.test.ts (3 tests) 49ms
+ ✓ tests/dictionary.test.ts (3 tests) 5ms
+
+ Test Files  15 passed (15)
+      Tests  60 passed (60)
+   Start at  17:14:55
+   Duration  21.68s (transform 2.08s, setup 8.95s, import 21.05s, tests 18.24s, environment 68.89s)
 ```
 
 ---
