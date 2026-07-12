@@ -1,64 +1,64 @@
-﻿# ðŸŸï¸ StadiumSense AI
+# 🏟️ StadiumSense AI
 ### Smart Stadium Operations & Tournament Assistant for FIFA World Cup 2026
 
-> **PromptWars Challenge 4 â€” Winning Entry**
+> **PromptWars Challenge 4 — Winning Entry**
 > AI-powered crowd intelligence, multilingual fan assistance, and accessibility-first smart stadium operations platform.
 
 ---
 
-## ðŸš€ Live Demo
+## 🚀 Live Demo
 
 ```
 npm install
 npm run dev
-â†’ http://localhost:3000
+→ http://localhost:3000
 ```
 
 ---
 
-## ðŸŒŸ Project Overview
+## 🌟 Project Overview
 
 **StadiumSense AI** is an enterprise-grade, production-ready smart stadium operations platform designed for the FIFA World Cup 2026 at MetLife Stadium (East Rutherford, NJ). It directly solves the PromptWars Challenge 4 problem statement by combining Google Gemini AI with real-time crowd intelligence, multilingual support, and a WCAG 2.1 AA compliant accessibility system.
 
 The platform serves **6 distinct user personas**:
-- ðŸŽŸï¸ **Fans** â€” Digital tickets, seat finder, AI navigation, lost & found, eco travel
-- ðŸ›¡ï¸ **Staff** â€” Incident management, gate control, announcements, SOS dispatch
-- ðŸ“Š **Organizers** â€” Live crowd analytics, sustainability metrics, AI operational insights
-- ðŸ¤ **Volunteers** â€” Multilingual translation, emergency checklists, task management
-- ðŸš¨ **Emergency Teams** â€” SOS system, evacuation guidance, medical station routing
-- â™¿ **Accessibility Users** â€” Voice input, TTS, high contrast, large fonts, screen reader
+- 🎟️ **Fans** — Digital tickets, seat finder, AI navigation, lost & found, eco travel
+- 🛡️ **Staff** — Incident management, gate control, announcements, SOS dispatch
+- 📊 **Organizers** — Live crowd analytics, sustainability metrics, AI operational insights
+- 🤝 **Volunteers** — Multilingual translation, emergency checklists, task management
+- 🚨 **Emergency Teams** — SOS system, evacuation guidance, medical station routing
+- ♿ **Accessibility Users** — Voice input, TTS, high contrast, large fonts, screen reader
 
 ---
 
-## ðŸ—ï¸ Architecture
+## 🏗️ Architecture
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                     StadiumSense AI Platform                   â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚  Fan Portal â”‚  Staff Dashboard â”‚  Organizer  â”‚  Volunteer Hub â”‚
-â”‚  /fan       â”‚  /staff          â”‚  /organizer â”‚  /volunteer    â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚                    Shared Components Layer                      â”‚
-â”‚  LayoutHeader Â· StadiumMap Â· AIAssistant Â· CrowdSimulator Â·   â”‚
-â”‚  SOSButton Â· AccessibilityPanel Â· LanguageSelector            â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚                    Custom React Hooks                          â”‚
-â”‚  useLanguage Â· useAccessibility Â· useCrowdDensity             â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚                    Utility Layer                               â”‚
-â”‚  gemini.ts (AI Engine) Â· dictionary.ts Â· mockData.ts          â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚            Google Gemini AI (via API or local engine)          â”‚
-â”‚   gemini-2.0-flash Â· Rule-based fallback Â· Multilingual NLP   â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌────────────────────────────────────────────────────────────────┐
+│                     StadiumSense AI Platform                   │
+├─────────────┬──────────────────┬─────────────┬────────────────┤
+│  Fan Portal │  Staff Dashboard │  Organizer  │  Volunteer Hub │
+│  /fan       │  /staff          │  /organizer │  /volunteer    │
+├─────────────┴──────────────────┴─────────────┴────────────────┤
+│                    Shared Components Layer                      │
+│  LayoutHeader · StadiumMap · AIAssistant · CrowdSimulator ·   │
+│  SOSButton · AccessibilityPanel · LanguageSelector            │
+├────────────────────────────────────────────────────────────────┤
+│                    Custom React Hooks                          │
+│  useLanguage · useAccessibility · useCrowdDensity             │
+├────────────────────────────────────────────────────────────────┤
+│                    Utility Layer                               │
+│  gemini.ts (AI Engine) · dictionary.ts · mockData.ts          │
+├────────────────────────────────────────────────────────────────┤
+│            Google Gemini AI (via API or local engine)          │
+│   gemini-2.0-flash · Rule-based fallback · Multilingual NLP   │
+└────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## âœ¨ Core Features
+## ✨ Core Features
 
-### ðŸ¤– Google Gemini AI Integration
+### 🤖 Google Gemini AI Integration
 - Integrated via `NEXT_PUBLIC_GEMINI_API_KEY` (optional)
 - Smart local rule-engine fallback (works 100% offline)
 - Context-aware responses with crowd density awareness
@@ -66,19 +66,19 @@ The platform serves **6 distinct user personas**:
 - Role-specific quick questions per portal
 - Voice input (Web Speech API) + Text-to-Speech output
 
-### ðŸ—ºï¸ Interactive Stadium Map
+### 🗺️ Interactive Stadium Map
 - Custom SVG of MetLife Stadium with 5 zones, 5 gates
 - Real-time crowd density heatmap (Low/Medium/High)
 - Animated AI-recommended route paths during high density
 - Facility overlays: Washrooms, Food Courts, Medical, Recycling, Water Refill
 
-### ðŸ‘¥ Crowd Management
+### 👥 Crowd Management
 - Live density simulation (Low, Medium, High)
 - Per-gate waiting time estimates
 - AI rerouting recommendations with ETA savings
 - Real-time stadium occupancy counter
 
-### â™¿ WCAG 2.1 AA Accessibility
+### ♿ WCAG 2.1 AA Accessibility
 - High Contrast mode (WCAG AA color ratios)
 - Large Text mode (+20% scaling)
 - Color-Blind friendly palette (Okabe-Ito adapted)
@@ -88,7 +88,7 @@ The platform serves **6 distinct user personas**:
 - Keyboard navigation (focus rings on all interactive elements)
 - RTL support for Arabic
 
-### ðŸš¨ Emergency Management
+### 🚨 Emergency Management
 - SOS button with 3-second countdown (anti-accidental trigger)
 - Auto-generates incident report on activation
 - First Aid station routing
@@ -96,14 +96,14 @@ The platform serves **6 distinct user personas**:
 - Medical team ETA display
 - Police/Security direct contacts
 
-### ðŸŒ¿ Sustainability Hub
+### 🌿 Sustainability Hub
 - Water refill station locator
 - Recycling kiosk finder
 - Carbon footprint per transport mode
 - Digital ticket adoption tracking
 - Real-time eco metrics dashboard
 
-### ðŸŒ Multilingual Platform
+### 🌐 Multilingual Platform
 - Full UI translation in 6 languages
 - RTL support for Arabic
 - Real-time phrase translator for volunteers
@@ -111,40 +111,40 @@ The platform serves **6 distinct user personas**:
 
 ---
 
-## ðŸ“ Folder Structure
+## 📁 Folder Structure
 
 ```
 src/
-â”œâ”€â”€ app/
-â”‚   â”œâ”€â”€ layout.tsx              # Root layout with SEO metadata
-â”‚   â”œâ”€â”€ page.tsx                # Landing page (hackathon-winner design)
-â”‚   â”œâ”€â”€ globals.css             # Global CSS with glassmorphism, animations
-â”‚   â”œâ”€â”€ fan/page.tsx            # Fan Portal (ticket, map, transport, eco, lost-found)
-â”‚   â”œâ”€â”€ staff/page.tsx          # Staff Dashboard (incidents, gates, announcements)
-â”‚   â”œâ”€â”€ organizer/page.tsx      # Organizer Analytics (charts, heatmaps, insights)
-â”‚   â”œâ”€â”€ volunteer/page.tsx      # Volunteer Hub (translator, checklist, emergency)
-â”‚   â””â”€â”€ api/ai/route.ts         # Server-side Gemini API proxy
-â”œâ”€â”€ components/
-â”‚   â”œâ”€â”€ LayoutHeader.tsx        # Sticky nav + accessibility panel + language switcher
-â”‚   â”œâ”€â”€ StadiumMap.tsx          # Interactive SVG stadium heatmap
-â”‚   â”œâ”€â”€ AIAssistant.tsx         # Floating AI chat panel with voice + TTS
-â”‚   â”œâ”€â”€ CrowdSimulator.tsx      # Low/Medium/High density toggle controls
-â”‚   â””â”€â”€ SOSButton.tsx           # Emergency SOS with countdown protection
-â”œâ”€â”€ hooks/
-â”‚   â”œâ”€â”€ useLanguage.ts          # 6-language translation hook
-â”‚   â”œâ”€â”€ useAccessibility.ts     # WCAG accessibility features hook
-â”‚   â””â”€â”€ useCrowdDensity.ts      # Crowd simulation & gate wait times hook
-â”œâ”€â”€ utils/
-â”‚   â”œâ”€â”€ gemini.ts               # Gemini AI + local rule engine
-â”‚   â”œâ”€â”€ dictionary.ts           # Translation dictionaries (EN/HI/TE/ES/FR/AR)
-â”‚   â””â”€â”€ mockData.ts             # Static operational data
-â””â”€â”€ types/
-    â””â”€â”€ index.ts                # TypeScript type definitions
+├── app/
+│   ├── layout.tsx              # Root layout with SEO metadata
+│   ├── page.tsx                # Landing page (hackathon-winner design)
+│   ├── globals.css             # Global CSS with glassmorphism, animations
+│   ├── fan/page.tsx            # Fan Portal (ticket, map, transport, eco, lost-found)
+│   ├── staff/page.tsx          # Staff Dashboard (incidents, gates, announcements)
+│   ├── organizer/page.tsx      # Organizer Analytics (charts, heatmaps, insights)
+│   ├── volunteer/page.tsx      # Volunteer Hub (translator, checklist, emergency)
+│   └── api/ai/route.ts         # Server-side Gemini API proxy
+├── components/
+│   ├── LayoutHeader.tsx        # Sticky nav + accessibility panel + language switcher
+│   ├── StadiumMap.tsx          # Interactive SVG stadium heatmap
+│   ├── AIAssistant.tsx         # Floating AI chat panel with voice + TTS
+│   ├── CrowdSimulator.tsx      # Low/Medium/High density toggle controls
+│   └── SOSButton.tsx           # Emergency SOS with countdown protection
+├── hooks/
+│   ├── useLanguage.ts          # 6-language translation hook
+│   ├── useAccessibility.ts     # WCAG accessibility features hook
+│   └── useCrowdDensity.ts      # Crowd simulation & gate wait times hook
+├── utils/
+│   ├── gemini.ts               # Gemini AI + local rule engine
+│   ├── dictionary.ts           # Translation dictionaries (EN/HI/TE/ES/FR/AR)
+│   └── mockData.ts             # Static operational data
+└── types/
+    └── index.ts                # TypeScript type definitions
 ```
 
 ---
 
-## âš™ï¸ Installation
+## ⚙️ Installation
 
 ```bash
 # 1. Clone the repository
@@ -162,14 +162,14 @@ cp .env.example .env.local
 npm run dev
 
 # 5. Open in browser
-â†’ http://localhost:3000
+→ http://localhost:3000
 ```
 
 > **Note:** The application works 100% without any API key using the built-in local AI rule engine.
 
 ---
 
-## ðŸŒ Environment Variables
+## 🌍 Environment Variables
 
 | Variable | Required | Description |
 |---|---|---|
@@ -180,7 +180,7 @@ Copy `.env.example` to `.env.local` to configure.
 
 ---
 
-## ðŸš¢ Deployment
+## 🚢 Deployment
 
 ### Vercel (Recommended)
 ```bash
@@ -204,111 +204,111 @@ docker run -p 3000:3000 stadiumsense-ai
 
 ## Application Screenshots
 
-> ðŸ“¸ The screenshots below showcase the full feature set of **StadiumSense AI** across all six user portals. Place actual screenshots in the `./screenshots/` directory to render them here.
+> 📸 The screenshots below showcase the full feature set of **StadiumSense AI** across all six user portals. Place actual screenshots in the `./screenshots/` directory to render them here.
 
 ---
 
-### ðŸ  Home Page
+### 🏠 Home Page
 
-![Home Page](./screenshots/home.png)
+![Home Page](./screenshots/home.jpg)
 
-The landing page greets users with a cinematic hero section featuring the StadiumSense AI branding, a live stadium capacity counter, and a real-time crowd density indicator. Six role-based portal cards â€” Fan, Staff, Organizer, Volunteer, Emergency, and Accessibility â€” are prominently displayed, each with animated hover states and direct entry links. A features grid below highlights AI capabilities, multilingual support, and WCAG 2.1 AA accessibility badges. The dark glassmorphism design with gradient accents creates an immediate premium first impression.
+The landing page greets users with a cinematic hero section featuring the StadiumSense AI branding, a live stadium capacity counter, and a real-time crowd density indicator. Six role-based portal cards — Fan, Staff, Organizer, Volunteer, Emergency, and Accessibility — are prominently displayed, each with animated hover states and direct entry links. A features grid below highlights AI capabilities, multilingual support, and WCAG 2.1 AA accessibility badges. The dark glassmorphism design with gradient accents creates an immediate premium first impression.
 
 ---
 
-### ðŸ¤– AI Assistant
+### 🤖 AI Assistant
 
-![AI Assistant](./screenshots/ai-assistant.png)
+![AI Assistant](./screenshots/ai-assistant.jpg)
 
 The AI Assistant is a floating, context-aware chat panel powered by **Google Gemini 2.0 Flash** with a smart local rule-engine fallback. Users can type or speak queries (via Web Speech API) and receive instant, role-tailored responses in their chosen language. The interface features a conversation history view, quick-question chips, a Text-to-Speech toggle for audible responses, and a language selector supporting English, Hindi, Telugu, Spanish, French, and Arabic. The panel adapts its suggested prompts dynamically based on the active portal (Fan, Staff, Organizer, or Volunteer).
 
 ---
 
-### ðŸŸï¸ Fan Portal
+### 🏟️ Fan Portal
 
-![Fan Portal](./screenshots/fan-portal.png)
+![Fan Portal](./screenshots/fan-portal.jpg)
 
 The Fan Portal provides everything an attendee needs for a seamless match-day experience. Key features include:
 
-- **Seat Finder** â€” Enter a seat number to get a color-coded zone map and directions from the nearest gate
-- **Interactive Stadium Map** â€” A custom SVG heatmap of MetLife Stadium with live crowd density overlays across 5 zones and 5 gates
-- **Parking & Transport** â€” Real-time lot availability, eco-friendly transit options (NJ Transit, carpooling), and estimated carbon savings per travel mode
-- **Food Courts** â€” Browse nearby concession stands, check wait times, and browse digital menus
-- **Multilingual Support** â€” All UI labels, AI responses, and navigation instructions available in 6 languages with full RTL support for Arabic
+- **Seat Finder** — Enter a seat number to get a color-coded zone map and directions from the nearest gate
+- **Interactive Stadium Map** — A custom SVG heatmap of MetLife Stadium with live crowd density overlays across 5 zones and 5 gates
+- **Parking & Transport** — Real-time lot availability, eco-friendly transit options (NJ Transit, carpooling), and estimated carbon savings per travel mode
+- **Food Courts** — Browse nearby concession stands, check wait times, and browse digital menus
+- **Multilingual Support** — All UI labels, AI responses, and navigation instructions available in 6 languages with full RTL support for Arabic
 
 ---
 
-### ðŸ‘¨â€ðŸ’¼ Staff Dashboard
+### 👨‍💼 Staff Dashboard
 
-![Staff Dashboard](./screenshots/staff-dashboard.png)
+![Staff Dashboard](./screenshots/staff-dashboard.jpg)
 
 Designed for stadium operations staff, this dashboard provides mission-critical tools for match-day management:
 
-- **Crowd Monitoring** â€” Live gate-by-gate occupancy percentages with color-coded thresholds (green / amber / red) and estimated wait times per entry point
-- **Incident Log** â€” A real-time incident feed showing type, location, severity, and assigned responder; new incidents can be logged with a single tap
-- **Gate Control** â€” Open, close, or redirect crowds through any of the 5 stadium gates directly from the dashboard
-- **Announcement Board** â€” Push stadium-wide or zone-specific announcements in any of the 6 supported languages
-- **Operational Management** â€” Staff assignment matrix, shift status, and quick-access contacts for medical, security, and logistics teams
+- **Crowd Monitoring** — Live gate-by-gate occupancy percentages with color-coded thresholds (green / amber / red) and estimated wait times per entry point
+- **Incident Log** — A real-time incident feed showing type, location, severity, and assigned responder; new incidents can be logged with a single tap
+- **Gate Control** — Open, close, or redirect crowds through any of the 5 stadium gates directly from the dashboard
+- **Announcement Board** — Push stadium-wide or zone-specific announcements in any of the 6 supported languages
+- **Operational Management** — Staff assignment matrix, shift status, and quick-access contacts for medical, security, and logistics teams
 
 ---
 
-### ðŸ“Š Organizer Dashboard
+### 📊 Organizer Dashboard
 
-![Organizer Dashboard](./screenshots/organizer-dashboard.png)
+![Organizer Dashboard](./screenshots/organizer-dashboard.jpg)
 
 The Organizer Dashboard is the command center for event directors and stadium management executives:
 
-- **Live Analytics** â€” Attendance curves, gate throughput charts, and peak-entry time visualizations updated in near real-time
-- **Crowd Heatmaps** â€” Zone-by-zone density heatmaps overlaid on a stadium layout, enabling proactive crowd redistribution
-- **Sustainability Metrics** â€” Digital ticket adoption rate, water refill station usage, recycling kiosk activity, and aggregate carbon footprint of all attendees
-- **AI Operational Insights** â€” Gemini AI-generated summaries of crowd behavior, incident patterns, and recommended pre-emptive actions for the next 30-minute window
-- **Export & Reporting** â€” One-click PDF/CSV export of all analytics for post-event review and compliance reporting
+- **Live Analytics** — Attendance curves, gate throughput charts, and peak-entry time visualizations updated in near real-time
+- **Crowd Heatmaps** — Zone-by-zone density heatmaps overlaid on a stadium layout, enabling proactive crowd redistribution
+- **Sustainability Metrics** — Digital ticket adoption rate, water refill station usage, recycling kiosk activity, and aggregate carbon footprint of all attendees
+- **AI Operational Insights** — Gemini AI-generated summaries of crowd behavior, incident patterns, and recommended pre-emptive actions for the next 30-minute window
+- **Export & Reporting** — One-click PDF/CSV export of all analytics for post-event review and compliance reporting
 
 ---
 
-### ðŸ™‹ Volunteer Portal
+### 🙋 Volunteer Portal
 
-![Volunteer Portal](./screenshots/volunteer-portal.png)
+![Volunteer Portal](./screenshots/volunteer-portal.jpg)
 
 The Volunteer Portal empowers on-ground helpers with the tools they need to assist fans effectively:
 
-- **Multilingual Assistance** â€” A real-time phrase translator covers 50+ common stadium phrases across 6 languages, enabling volunteers to communicate with international fans instantly
-- **Task Board** â€” Assigned tasks are displayed with priority levels, locations, and completion checkboxes; supervisors can push new tasks remotely
-- **Emergency Checklist** â€” A step-by-step guided protocol for medical, fire, and evacuation scenarios to ensure every volunteer responds correctly under pressure
-- **AI Chat** â€” Role-specific Gemini AI assistant trained on volunteer FAQs, stadium layout, and emergency procedures
+- **Multilingual Assistance** — A real-time phrase translator covers 50+ common stadium phrases across 6 languages, enabling volunteers to communicate with international fans instantly
+- **Task Board** — Assigned tasks are displayed with priority levels, locations, and completion checkboxes; supervisors can push new tasks remotely
+- **Emergency Checklist** — A step-by-step guided protocol for medical, fire, and evacuation scenarios to ensure every volunteer responds correctly under pressure
+- **AI Chat** — Role-specific Gemini AI assistant trained on volunteer FAQs, stadium layout, and emergency procedures
 
 ---
 
-### ðŸš¨ Emergency Assistance
+### 🚨 Emergency Assistance
 
-![Emergency](./screenshots/emergency.png)
+![Emergency](./screenshots/emergency.jpg)
 
 The Emergency Assistance module is designed for speed and clarity in high-stress situations:
 
-- **SOS Button** â€” A prominent, tap-to-activate SOS trigger with a 3-second countdown timer to prevent accidental dispatches; activates an auto-generated incident report upon confirmation
-- **First Aid Routing** â€” Displays the nearest First Aid station with estimated walking time and a highlighted map path
-- **Emergency Exit Guidance** â€” Zone-specific nearest exit directions with real-time crowd density warnings for each route
-- **Medical Team ETA** â€” Live estimated arrival time for the on-site medical response team
-- **Direct Contacts** â€” One-tap calling shortcuts for Police, Security, Fire, and Medical leads
-- **Evacuation Broadcast** â€” Staff-only feature to trigger a stadium-wide evacuation alert in all 6 languages simultaneously
+- **SOS Button** — A prominent, tap-to-activate SOS trigger with a 3-second countdown timer to prevent accidental dispatches; activates an auto-generated incident report upon confirmation
+- **First Aid Routing** — Displays the nearest First Aid station with estimated walking time and a highlighted map path
+- **Emergency Exit Guidance** — Zone-specific nearest exit directions with real-time crowd density warnings for each route
+- **Medical Team ETA** — Live estimated arrival time for the on-site medical response team
+- **Direct Contacts** — One-tap calling shortcuts for Police, Security, Fire, and Medical leads
+- **Evacuation Broadcast** — Staff-only feature to trigger a stadium-wide evacuation alert in all 6 languages simultaneously
 
 ---
 
-### ðŸ“± Mobile Responsive UI
+### 📱 Mobile Responsive UI
 
-![Mobile](./screenshots/mobile.png)
+![Mobile](./screenshots/mobile.jpg)
 
 StadiumSense AI is fully responsive across all screen sizes, from 320px mobile devices to 4K displays:
 
-- **Adaptive Layouts** â€” All dashboards reflow gracefully from multi-column desktop grids to single-column mobile stacks using CSS Grid and Flexbox
-- **Touch-Optimized Controls** â€” Buttons, cards, and interactive map elements are sized to WCAG 2.5.5 target size recommendations (at least 44Ã—44 px)
-- **Bottom Navigation** â€” On small screens, the portal navigation collapses into a bottom tab bar for one-handed usability
-- **Offline Resilience** â€” The local AI rule engine and cached translations ensure core features remain functional even in low-connectivity stadium environments
-- **PWA Ready** â€” The application is structured for Progressive Web App enhancement, enabling home screen installation and push notification support
+- **Adaptive Layouts** — All dashboards reflow gracefully from multi-column desktop grids to single-column mobile stacks using CSS Grid and Flexbox
+- **Touch-Optimized Controls** — Buttons, cards, and interactive map elements are sized to WCAG 2.5.5 target size recommendations (at least 44×44 px)
+- **Bottom Navigation** — On small screens, the portal navigation collapses into a bottom tab bar for one-handed usability
+- **Offline Resilience** — The local AI rule engine and cached translations ensure core features remain functional even in low-connectivity stadium environments
+- **PWA Ready** — The application is structured for Progressive Web App enhancement, enabling home screen installation and push notification support
 
 ---
 
-## ðŸ§ª Testing
+## 🧪 Testing
 
 ```bash
 # Run unit & integration tests
@@ -322,15 +322,15 @@ npm run lint
 ```
 
 ### Test Coverage
-- `useLanguage` â€” Dictionary key resolution, RTL toggle, language switching
-- `useCrowdDensity` â€” Density state transitions, waiting time calculations
-- `useAccessibility` â€” Theme class toggling, TTS availability detection
-- AI Engine â€” Rule pattern matching, fallback responses
-- CrowdSimulator â€” Density â†’ color mappings
+- `useLanguage` — Dictionary key resolution, RTL toggle, language switching
+- `useCrowdDensity` — Density state transitions, waiting time calculations
+- `useAccessibility` — Theme class toggling, TTS availability detection
+- AI Engine — Rule pattern matching, fallback responses
+- CrowdSimulator — Density → color mappings
 
 ---
 
-## ðŸ”® Future Scope
+## 🔮 Future Scope
 
 | Feature | Priority | Notes |
 |---|---|---|
@@ -345,26 +345,26 @@ npm run lint
 
 ---
 
-## ðŸ† Why StadiumSense AI Wins
+## 🏆 Why StadiumSense AI Wins
 
-1. **Solves the Real Problem** â€” Directly addresses PromptWars Challenge 4: stadium operations and tournament experience
-2. **Production-Ready Architecture** â€” Clean code, TypeScript, modular hooks, reusable components
-3. **Gemini AI at the Core** â€” With smart local fallback for offline demo reliability
-4. **Accessibility-First** â€” WCAG 2.1 AA compliant, voice input, TTS, 6 languages
-5. **Award-Winning Design** â€” Glassmorphism, gradients, animations, dark/light mode
-6. **Deployable in 60 Seconds** â€” `npm install && npm run dev` â€” zero configuration needed
+1. **Solves the Real Problem** — Directly addresses PromptWars Challenge 4: stadium operations and tournament experience
+2. **Production-Ready Architecture** — Clean code, TypeScript, modular hooks, reusable components
+3. **Gemini AI at the Core** — With smart local fallback for offline demo reliability
+4. **Accessibility-First** — WCAG 2.1 AA compliant, voice input, TTS, 6 languages
+5. **Award-Winning Design** — Glassmorphism, gradients, animations, dark/light mode
+6. **Deployable in 60 Seconds** — `npm install && npm run dev` — zero configuration needed
 
 ---
 
-## ðŸ“„ License
+## 📄 License
 
-MIT License â€” Free to use for educational and hackathon purposes.
+MIT License — Free to use for educational and hackathon purposes.
 
 ---
 
 <div align="center">
-<p>âš½ Built with â¤ï¸ for FIFA World Cup 2026 Â· Powered by Google Gemini AI</p>
-<p>ðŸŒ WCAG 2.1 AA Â· ðŸŒ¿ Carbon Neutral Â· â™¿ Fully Accessible</p>
+<p>⚽ Built with ❤️ for FIFA World Cup 2026 · Powered by Google Gemini AI</p>
+<p>🌍 WCAG 2.1 AA · 🌿 Carbon Neutral · ♿ Fully Accessible</p>
 </div>
    s t a d i u m s e n s e - a i  
  
