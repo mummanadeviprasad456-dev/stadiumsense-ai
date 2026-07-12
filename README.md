@@ -9,7 +9,7 @@
 ## 🚀 Live Demo
 
 ```
-npm install
+npm install 
 npm run dev
 → http://localhost:3000
 ```
@@ -366,5 +366,6 @@ MIT License — Free to use for educational and hackathon purposes.
 <p>⚽ Built with ❤️ for FIFA World Cup 2026 · Powered by Google Gemini AI</p>
 <p>🌍 WCAG 2.1 AA · 🌿 Carbon Neutral · ♿ Fully Accessible</p>
 </div>
-#   s t a d i u m s e n s e - a i  
+#   s t a d i u m s e n s e - a i 
+ 
  
