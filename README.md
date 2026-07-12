@@ -338,4 +338,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ---
 
 ## Author
-Developed by the StadiumSense AI Team for the PromptWars Challenge 4.
+Mummana Devi Prasad
