@@ -8,6 +8,8 @@
 ![Gemini AI](https://img.shields.io/badge/Gemini_AI-8E44AD?style=for-the-badge&logo=google-gemini&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 ![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
+![Tests](https://img.shields.io/badge/Tests-60%20passed-brightgreen?style=for-the-badge&logo=vitest)
+![CI](https://github.com/mummanadeviprasad456-dev/stadiumsense-ai/actions/workflows/test.yml/badge.svg)
 
 StadiumSense AI is an enterprise-grade, production-ready smart stadium operations and fan experience platform designed for the FIFA World Cup 2026. The system leverages Google Gemini AI, real-time crowd simulations, multilingual localization, and strict WCAG 2.1 AA accessibility features to provide a unified digital solution for fans, stadium staff, event organizers, and volunteers.
 
@@ -268,41 +270,64 @@ npm run dev
 
 ## Testing
 
-StadiumSense AI includes a complete testing setup using [Vitest](https://vitest.dev/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro).
+StadiumSense AI includes a comprehensive test suite using **[Vitest](https://vitest.dev/)** and **[React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)**, with automated CI via GitHub Actions.
 
-To run all unit and integration tests:
+### Running Tests
 ```bash
+# Run all tests
 npm test
+
+# Run in watch mode during development
+npm run test:watch
 ```
+
+### Test Coverage — 15 Files · 60 Tests · 100% Pass Rate
+
+| Test File | Tests | Coverage Area |
+|---|---|---|
+| `SOSButton.test.tsx` | 4 | SOS countdown, double-tap guard, cancel flow |
+| `gemini.test.ts` | 4 | AI response engine, offline fallback, density warnings |
+| `LandingPage.test.tsx` | 4 | Hero section, portal cards, stats bar, match timeline |
+| `OrganizerDashboard.test.tsx` | 5 | KPI metrics, SVG charts, nationality distribution, live count |
+| `VolunteerPortal.test.tsx` | 8 | Live Translator, task checklist, event schedule, Lost & Found |
+| `FanPortal.test.tsx` | 6 | Ticket scan, map/routes, travel, eco hub, Lost & Found |
+| `StaffPortal.test.tsx` | 4 | KPI metrics, incident list, dispatch, announcements |
+| `useAccessibility.test.ts` | 5 | Font scaling, contrast mode, screen reader, RTL toggle |
+| `AIAssistant.test.tsx` | 3 | Floating trigger, chat panel open/close |
+| `StadiumMap.test.tsx` | 3 | SVG render, stand labels, zone density colors |
+| `CrowdSimulator.test.tsx` | 2 | Density display, button callback dispatch |
+| `useLanguage.test.ts` | 3 | Language switching, translation lookup, fallback |
+| `LayoutHeader.test.tsx` | 3 | Header render, navigation links, language menu |
+| `useCrowdDensity.test.ts` | 3 | Density state management, zone updates |
+| `dictionary.test.ts` | 3 | Translation dictionary completeness, key coverage |
 
 ### Sample Test Output
 ```
 > promptwars@0.1.0 test
 > vitest run
 
-
  RUN  v4.1.10 C:/Users/mumma/OneDrive/Desktop/promptwars
 
- ✓ tests/SOSButton.test.tsx (4 tests) 1008ms
- ✓ tests/gemini.test.ts (4 tests) 3250ms
- ✓ tests/LandingPage.test.tsx (4 tests) 2224ms
- ✓ tests/OrganizerDashboard.test.tsx (5 tests) 2165ms
- ✓ tests/VolunteerPortal.test.tsx (8 tests) 2496ms
- ✓ tests/FanPortal.test.tsx (6 tests) 2608ms
- ✓ tests/StaffPortal.test.tsx (4 tests) 2130ms
- ✓ tests/useAccessibility.test.ts (5 tests) 108ms
- ✓ tests/AIAssistant.test.tsx (3 tests) 773ms
- ✓ tests/StadiumMap.test.tsx (3 tests) 536ms
- ✓ tests/CrowdSimulator.test.tsx (2 tests) 498ms
- ✓ tests/useLanguage.test.ts (3 tests) 60ms
- ✓ tests/LayoutHeader.test.tsx (3 tests) 327ms
- ✓ tests/useCrowdDensity.test.ts (3 tests) 49ms
- ✓ tests/dictionary.test.ts (3 tests) 5ms
+ ✓ tests/SOSButton.test.tsx (4 tests) 1636ms
+ ✓ tests/gemini.test.ts (4 tests) 3430ms
+ ✓ tests/OrganizerDashboard.test.tsx (5 tests) 3055ms
+ ✓ tests/StaffPortal.test.tsx (4 tests) 3135ms
+ ✓ tests/LandingPage.test.tsx (4 tests) 3409ms
+ ✓ tests/FanPortal.test.tsx (6 tests) 3735ms
+ ✓ tests/VolunteerPortal.test.tsx (8 tests) 4150ms
+ ✓ tests/StadiumMap.test.tsx (3 tests) 607ms
+ ✓ tests/useAccessibility.test.ts (5 tests) 103ms
+ ✓ tests/LayoutHeader.test.tsx (3 tests) 588ms
+ ✓ tests/AIAssistant.test.tsx (3 tests) 1081ms
+ ✓ tests/CrowdSimulator.test.tsx (2 tests) 910ms
+ ✓ tests/useLanguage.test.ts (3 tests) 112ms
+ ✓ tests/useCrowdDensity.test.ts (3 tests) 65ms
+ ✓ tests/dictionary.test.ts (3 tests) 10ms
 
  Test Files  15 passed (15)
       Tests  60 passed (60)
-   Start at  17:14:55
-   Duration  21.68s (transform 2.08s, setup 8.95s, import 21.05s, tests 18.24s, environment 68.89s)
+   Start at  20:01:40
+   Duration  28.58s
 ```
 
 ---
