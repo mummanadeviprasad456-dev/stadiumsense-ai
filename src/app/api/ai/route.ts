@@ -44,6 +44,7 @@ export async function POST(req: NextRequest) {
       if (translation) {
         return NextResponse.json({ translation });
       }
+      // Gemini returned no candidates — signal failure so the client can use the local fallback
       return NextResponse.json({ error: 'Translation failed.' }, { status: 502 });
     }
 
@@ -72,7 +73,11 @@ export async function POST(req: NextRequest) {
     );
 
     const json = await res.json();
-    const text = json?.candidates?.[0]?.content?.parts?.[0]?.text ?? 'I was unable to process that request. Please try again.';
+    const text = json?.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!text) {
+      // Gemini returned no candidates — signal failure so the client can use the local fallback
+      return NextResponse.json({ error: 'Gemini returned no response.' }, { status: 502 });
+    }
 
     return NextResponse.json({ response: text });
   } catch (err) {
