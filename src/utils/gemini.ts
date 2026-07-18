@@ -2,10 +2,10 @@ import { ChatMessage, CrowdDensity, Language } from '../types';
 
 /**
  * Gemini AI Integration Utility
- * Falls back to a rich local rule-based engine if no API key is configured.
+ * All Gemini API requests are securely proxied through the server-side /api/ai route.
+ * Falls back to a rich local rule-based engine if the server is unavailable or returns an error.
+ * No API key is ever exposed to the client bundle.
  */
-
-const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
 
 // ─── Local AI Rule Engine ────────────────────────────────────────────────────
 
@@ -93,7 +93,8 @@ const rules: { patterns: string[]; response: string }[] = [
 ];
 
 /**
- * Rule-based local AI response engine for when Gemini API is not configured.
+ * Rule-based local AI response engine.
+ * Used when the /api/ai server route is unavailable or returns an error.
  */
 function localAIResponse(input: string, density: CrowdDensity): string {
   const lower = input.toLowerCase();
@@ -113,7 +114,9 @@ function localAIResponse(input: string, density: CrowdDensity): string {
 }
 
 /**
- * Queries the Gemini API or falls back to the local AI engine.
+ * Sends a chat query to the secure /api/ai server-side proxy.
+ * Falls back to the local rule-based engine if the server is unavailable or returns an error.
+ * No Gemini API key is used or exposed on the client side.
  */
 export async function getAIResponse(
   input: string,
@@ -121,46 +124,47 @@ export async function getAIResponse(
   density: CrowdDensity,
   lang: Language
 ): Promise<string> {
-  if (!GEMINI_API_KEY) {
-    // Simulate a brief network delay for realism
-    await new Promise((resolve) => setTimeout(resolve, 700 + Math.random() * 600));
-    return localAIResponse(input, density);
-  }
-
   try {
-    const systemContext = `You are StadiumSense AI, the official smart assistant for FIFA World Cup 2026 at MetLife Stadium (New York/New Jersey, USA). You help fans, staff, volunteers, and organizers with stadium navigation, crowd management, emergency guidance, transportation, sustainability, accessibility, and match information. The current crowd density is: ${density}. Always respond in ${lang === 'ar' ? 'Arabic' : lang === 'hi' ? 'Hindi' : lang === 'te' ? 'Telugu' : lang === 'es' ? 'Spanish' : lang === 'fr' ? 'French' : 'English'}. Keep responses concise, helpful, and action-oriented. Use relevant emojis.`;
-
     const formattedHistory = history.map((msg) => ({
       role: msg.sender === 'user' ? 'user' : 'model',
       parts: [{ text: msg.text }],
     }));
 
-    const body = {
-      system_instruction: { parts: [{ text: systemContext }] },
-      contents: [...formattedHistory, { role: 'user', parts: [{ text: input }] }],
-      generationConfig: { temperature: 0.7, maxOutputTokens: 512 },
-    };
+    const res = await fetch('/api/ai', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        prompt: input,
+        history: formattedHistory,
+        density,
+        lang,
+      }),
+    });
 
-    const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
-      { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
-    );
+    if (res.ok) {
+      const json = await res.json();
+      if (json?.response) return json.response;
+    }
 
-    const json = await res.json();
-    return json?.candidates?.[0]?.content?.parts?.[0]?.text ?? localAIResponse(input, density);
+    // Server returned an error status — fall back to local engine
+    await new Promise((resolve) => setTimeout(resolve, 700 + Math.random() * 600));
+    return localAIResponse(input, density);
   } catch {
+    // Network error or server unavailable — fall back to local engine
+    await new Promise((resolve) => setTimeout(resolve, 700 + Math.random() * 600));
     return localAIResponse(input, density);
   }
 }
 
 /**
- * Translates a custom phrase to the target language using Gemini or a local fallback.
+ * Translates a phrase to the target language via the secure /api/ai server-side proxy.
+ * Extensive local fallbacks are tried first; the server proxy is only called as a last resort.
+ * No Gemini API key is used or exposed on the client side.
  */
 export async function translateText(
   text: string,
   targetLang: 'hi' | 'te' | 'es' | 'fr' | 'ar'
 ): Promise<string> {
-  const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
   const langNames: Record<string, string> = {
     hi: 'Hindi',
     te: 'Telugu',
@@ -189,7 +193,7 @@ export async function translateText(
     'stadium': { hi: 'स्टेडियम', te: 'స్టేడియం', es: 'estadio', fr: 'stade', ar: 'ملعب' }
   };
 
-  // Predefined keyword matches to make the local engine feel smart
+  // ── Local fallback checks (always tried first) ──────────────────────────────
   const lower = text.toLowerCase().trim();
   const cleanPhrase = lower.replace(/[?.!,]/g, '');
 
@@ -226,44 +230,36 @@ export async function translateText(
     return simpleFallbacks[cleanPhrase][targetLang];
   }
 
-  if (!GEMINI_API_KEY) {
-    // Return a simulated translation for other phrases when offline
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    const langName = langNames[targetLang] || targetLang;
-
-    if (lower.includes('ticket')) {
-      return simpleFallbacks['ticket'][targetLang] + ' ?';
-    }
-    if (lower.includes('water')) {
-      return simpleFallbacks['water'][targetLang] + ' ?';
-    }
-    if (lower.includes('exit')) {
-      return simpleFallbacks['exit'][targetLang] + ' ?';
-    }
-
-    return `[AI Demo: "${text}" in ${langName}]`;
+  // Check simple fallbacks for partial keyword matches
+  if (lower.includes('ticket')) {
+    return simpleFallbacks['ticket'][targetLang] + ' ?';
+  }
+  if (lower.includes('water')) {
+    return simpleFallbacks['water'][targetLang] + ' ?';
+  }
+  if (lower.includes('exit')) {
+    return simpleFallbacks['exit'][targetLang] + ' ?';
   }
 
+  // ── Server-side proxy call for unknown phrases ──────────────────────────────
   try {
-    const prompt = `Translate the following English phrase into ${langNames[targetLang] || targetLang}. Respond ONLY with the translation. Do not include quotes, explanations, or extra words.
-Phrase: "${text}"`;
+    const res = await fetch('/api/ai', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'translate',
+        text,
+        targetLang,
+      }),
+    });
 
-    const body = {
-      contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.2, maxOutputTokens: 150 },
-    };
-
-    const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
-      { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
-    );
-
-    const json = await res.json();
-    const result = json?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
-    if (result) return result;
+    if (res.ok) {
+      const json = await res.json();
+      if (json?.translation) return json.translation;
+    }
   } catch (err) {
     console.error('Translation error:', err);
   }
 
-  return `[AI Translation Fallback: "${text}"]`;
+  return `[AI Translation Fallback: "${text}" in ${langNames[targetLang] || targetLang}]`;
 }

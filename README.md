@@ -333,19 +333,31 @@ npm run test:watch
 ---
 
 ## Environment Variables
-Create a `.env.local` file in the root directory and add the following variable:
+
+### Security Architecture
+All Gemini AI requests are **securely proxied** through the server-side Next.js API route at `/api/ai`. The API key is **never exposed to the client bundle** — there is no `NEXT_PUBLIC_` prefix.
+
+Create a `.env.local` file in the root directory for local development:
 ```env
-NEXT_PUBLIC_GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+# Server-side only — never exposed to the browser
+GEMINI_API_KEY=your_gemini_api_key_here
 ```
-*Note: The platform is built with a local rule-engine fallback and will work 100% offline if no API key is provided.*
+
+> **How it works:** `src/utils/gemini.ts` calls `/api/ai` (a Next.js server route). The server route reads `process.env.GEMINI_API_KEY` and forwards the request to Google Gemini. The key never leaves the server.
+
+*Note: The platform includes a rich local rule-engine fallback and will work 100% offline if no API key is provided.*
 
 ---
 
 ## Deployment
 This project is configured for easy deployment on Vercel:
 1. Connect your GitHub repository to Vercel.
-2. Add `NEXT_PUBLIC_GEMINI_API_KEY` under Environment Variables in the project settings.
-3. Deploy!
+2. In your Vercel project settings → **Environment Variables**, add:
+   - **Name:** `GEMINI_API_KEY`
+   - **Value:** your Google Gemini API key
+   - **Environment:** Production (and Preview/Development as needed)
+   > ⚠️ Do **not** use `NEXT_PUBLIC_GEMINI_API_KEY`. The key must remain server-side only. Using the `NEXT_PUBLIC_` prefix would expose it in the client bundle.
+3. Deploy — all AI requests are automatically proxied through `/api/ai` on the server.
 
 ---
 
